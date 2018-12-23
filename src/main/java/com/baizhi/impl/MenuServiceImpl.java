@@ -15,7 +15,7 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     private MenuMapper menuMapper;
 
-    public List<Menu> queryAll() {
-        return menuMapper.queryAll();
+    public List<Menu> queryAllMenu() {
+        return menuMapper.queryAllMenu();
     }
 }

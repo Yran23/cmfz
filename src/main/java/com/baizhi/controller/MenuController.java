@@ -14,8 +14,9 @@ public class MenuController {
     @Autowired
     private MenuService menuService;
 
-    @RequestMapping("/queryAll")
-    public List<Menu> queryAll() {
-        return menuService.queryAll();
+    @RequestMapping("/queryAllMenu")
+    public List<Menu> queryAllMenu() {
+        return menuService.queryAllMenu();
     }
+
 }

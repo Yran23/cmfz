@@ -6,11 +6,14 @@ import lombok.NoArgsConstructor;
 import tk.mybatis.mapper.annotation.KeySql;
 
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "menu")
 public class Menu implements Serializable {
     @Id
     @KeySql(useGeneratedKeys = true)
@@ -18,5 +21,5 @@ public class Menu implements Serializable {
     private String title;
     private String iconcls;
     private String url;
-
+    List<Menu> menu;
 }

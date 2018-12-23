@@ -14,7 +14,7 @@
     <script type="text/javascript">
         <!--菜单处理-->
         $(function () {
-            $.get("${pageContext.request.contextPath}/menu/queryAll",
+            $.get("${pageContext.request.contextPath}/menu/queryAllMenu",
                 function (res) {
                     $.each(res, function (idx, value) {
                         var d = "";
@@ -41,7 +41,7 @@
                 $("#tt").tabs("add", {
                     title: title,
                     closable: true,
-                    href: "${pageContext.request.contentType}" + url
+                    href: "${pageContext.request.contextPath}" + url
                 });
             }
         }

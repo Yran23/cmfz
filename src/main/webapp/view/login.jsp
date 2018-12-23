@@ -17,13 +17,35 @@
         $(function () {
             //点击更换验证码：
             $("#captchaImage").click(function () {//点击更换验证码
-                alert("自己做");
+                $("#captchaImage").prop("src", "${pageContext.request.contextPath}/admin/getCode?time=" + new Date());
             });
 
+            $("#enCode").blur(function () {
+                $.ajax({
+                    type: "get",
+                    url: "${pageContext.request.contextPath}/admin/valCode",
+                    data: "code=" + $("#enCode").val(),
+
+                    success: function (res) {
+                        if (res != "ok") {
+                            $("#error").text(res);
+                        } else {
+                            $("#error").empty();
+                        }
+                    }
+                });
+            });
             //  form 表单提交
             $("#loginForm").bind("submit", function () {
-                alert("自己做");
-                return false;
+                if ($("#name").val() != "" && $("#pwd").val() != "" && $("#enCode").val() != "") {
+                    if ($("#error").text() == "") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
             });
         });
     </script>
@@ -31,7 +53,7 @@
 <body>
 
 <div class="login">
-    <form id="loginForm" action="../back/index.html" method="post">
+    <form id="loginForm" action="${pageContext.request.contextPath}/admin/login" method="post">
 
         <table>
             <tbody>
@@ -43,7 +65,7 @@
                     用户名:
                 </th>
                 <td>
-                    <input type="text" name="user.name" class="text" value="xxx" maxlength="20"/>
+                    <input id="name" type="text" name="account" class="text" maxlength="20"/>
                 </td>
             </tr>
             <tr>
@@ -51,8 +73,7 @@
                     密&nbsp;&nbsp;&nbsp;码:
                 </th>
                 <td>
-                    <input type="password" name="user.password" class="text" value="xxx" maxlength="20"
-                           autocomplete="off"/>
+                    <input id="pwd" type="password" name="password" class="text" maxlength="20" autocomplete="off"/>
                 </td>
             </tr>
 
@@ -61,7 +82,8 @@
                 <th>验证码:</th>
                 <td>
                     <input type="text" id="enCode" name="enCode" class="text captcha" maxlength="4" autocomplete="off"/>
-                    <img id="captchaImage" class="captchaImage" src="../img/captcha.jpg" title="点击更换验证码"/>
+                    <img id="captchaImage" class="captchaImage" src="${pageContext.request.contextPath}/admin/getCode"
+                         title="点击更换验证码"/>
                 </td>
             </tr>
             <tr>
