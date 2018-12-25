@@ -27,7 +27,15 @@
             text: "添加音频",
             iconCls: 'icon-add',
             handler: function () {
-                alert('帮助按钮')
+                var row = $("#album").treegrid("getSelected")
+                if (row != null) {
+                    if (row.duration == null) {
+                        $("#addChapterDialog").dialog({
+                            href: "${pageContext.request.contextPath}/view/addChapter.jsp"
+                        });
+                        $("#addChapterDialog").dialog("open");
+                    }
+                }
             }
         }, '-', {
             text: "音频下载",
@@ -68,6 +76,13 @@
             closed: true,
             modal: true
         });
+        $("#addChapterDialog").dialog({
+            title: "添加音频",
+            height: 270,
+            width: 380,
+            closed: true,
+            modal: true
+        });
 
     })
 
@@ -76,3 +91,5 @@
 <table id="album"></table>
 <div id="queryAlbumDialog"/>
 <div id="addAlbumDialog"/>
+<div id="addChapterDialog"/>
+

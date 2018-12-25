@@ -7,7 +7,7 @@
 
 
         $("#albumFormId").val(ops.id);
-        $("#albumFormImg").prop("src", "${pageContext.request.contextPath}/shouye/" + ops.coverImg);
+        $("#albumFormImg").prop("src", "${pageContext.request.contextPath}" + ops.coverImg);
         $("#albumFormImg").validatebox({
             editable: false
         });

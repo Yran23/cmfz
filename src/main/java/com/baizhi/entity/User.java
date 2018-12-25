@@ -25,7 +25,7 @@ public class User implements Serializable {
     private String head_pic;
     private String name;
     private String dharma;
-    private String sex;
+    private Integer sex;
     private String province;
     private String city;
     private String status;
